@@ -58,7 +58,7 @@ touchMe = (me) ->
     animationB.on Events.AnimationEnd, ->
         animationA.start()
 
-#3.2 旋转效果 #(object me, int speed)
+# 3.2 旋转效果 #(object me, int speed)
 slowRotation = (me, speed) ->
     animationA = new Animation({
         layer: me,
