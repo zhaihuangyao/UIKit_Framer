@@ -3,4 +3,6 @@
 
 #目录
 1. dark_button(button_list = [])
-2. touch_me(arrow,direction)
+2. alpha_button(button_list = [])
+3. touch_me(arrow,direction)
+4. 
