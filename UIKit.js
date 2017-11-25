@@ -1,4 +1,4 @@
-#import UIkit
+#import UIkit 0.2
 
 # 1 点击效果
 
@@ -18,7 +18,7 @@ alphaButton = (button_List = []) ->
 # 2 点击功能绑定
 
 # 2.1 点击显示 # (Array button_List, object tar_layer)
-goToButton = (button_List = [],tar_layer) ->
+openButton = (button_List = [],tar_layer) ->
     for bt in button_List
         bt.onClick ->
             tar_layer.visible = true
@@ -33,7 +33,31 @@ closeButton = (button_List) ->
 cantTouchPass = (layer_list) ->
     for ly in layer_list
         ly.onClick ->
- 
+
+# 2.4 点击移动到，仅适用于flow图布局 # (Array button_List, object tar_layer)
+# 存放当前摄像机坐标，之后用来做backButton
+node_list = []
+point_zero =
+    x : 0
+    y : 0
+gotoButton = (button_List = [],tar_layer) ->
+        root = tar_layer.ancestors()[tar_layer.ancestors().length - 1]
+        for bt in button_List
+            bt.onClick ->
+                print_pre = Screen.convertPointToLayer(point_zero, root)
+                node_list.push(print_pre)
+                root.x = 0 - tar_layer.x
+                root.y = 0 - tar_layer.y
+
+# 2.5 返回按钮，仅适用于flow图布局，所有的图层需要放在 $.root 下 （Array button_List）
+backButton = (button_List = []) ->
+        for bt in button_List
+            root = bt.ancestors()[bt.ancestors().length - 1]
+            bt.onClick ->
+                backPoint = node_list.pop()
+                root.x = 0 - backPoint.x
+                root.y = 0 - backPoint.y
+
 
 # 3 动画效果
 # 3.1 快来点我效果 # (object me)
