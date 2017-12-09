@@ -1,5 +1,4 @@
-#import UIkit 0.2
-
+#import UIkit 0.2.1
 # 1 点击效果
 
 # 1.1 变暗按钮 # (Array button_List)
@@ -49,7 +48,7 @@ gotoButton = (button_List = [],tar_layer) ->
                 root.x = 0 - tar_layer.x
                 root.y = 0 - tar_layer.y
 
-# 2.5 返回按钮，仅适用于flow图布局，所有的图层需要放在 $.root 下 （Array button_List）
+# 2.5 返回按钮，仅适用于flow图布局，所有的图层需要放在一个根图层下 （Array button_List）
 backButton = (button_List = []) ->
         for bt in button_List
             root = bt.ancestors()[bt.ancestors().length - 1]
@@ -127,3 +126,8 @@ touchThis =(arrow,direction)->
                 options:
                     time: 0.2
                     curve: Bezier(0.2, 0.1, 0.25, 1)
+# 4 常用动作
+# 4.1 批量隐藏
+hiddenThem = (layer_list = []) ->
+	for l in layer_list
+		l.visible = false
