@@ -57,6 +57,11 @@ backButton = (button_List = []) ->
                 root.x = 0 - backPoint.x
                 root.y = 0 - backPoint.y
 
+# 2.6 状态循环按钮 # (Array button_List, object tar_layer)
+openButton = (button_List = [],tar_layer) ->
+	for bt in button_List
+		bt.onClick ->
+			tar_layer.stateCycle()
 
 # 3 动画效果
 # 3.1 快来点我效果 # (object me)
