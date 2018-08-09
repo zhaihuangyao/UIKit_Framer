@@ -58,7 +58,7 @@ backButton = (button_List = []) ->
                 root.y = 0 - backPoint.y
 
 # 2.6 状态循环按钮 # (Array button_List, object tar_layer)
-openButton = (button_List = [],tar_layer) ->
+cycleButton = (button_List = [],tar_layer) ->
 	for bt in button_List
 		bt.onClick ->
 			tar_layer.stateCycle()
