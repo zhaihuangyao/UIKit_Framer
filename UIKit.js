@@ -33,7 +33,15 @@ cantTouchPass = (layer_list) ->
     for ly in layer_list
         ly.onClick ->
 
-# 2.4 点击移动到，仅适用于flow图布局 # (Array button_List, object tar_layer)
+
+# 2.6 状态循环按钮 # (Array button_List, object tar_layer)
+cycleButton = (button_List = [],tar_layer) ->
+	for bt in button_List
+		bt.onClick ->
+			tar_layer.stateCycle()
+
+# 5 MyFlow设计模式
+# 5.1 点击移动到，仅适用于flow图布局 # (Array button_List, object tar_layer)
 # 存放当前摄像机坐标，之后用来做backButton
 node_list = []
 point_zero =
@@ -48,7 +56,7 @@ gotoButton = (button_List = [],tar_layer) ->
                 root.x = 0 - tar_layer.x
                 root.y = 0 - tar_layer.y
 
-# 2.5 返回按钮，仅适用于flow图布局，所有的图层需要放在一个根图层下 （Array button_List）
+# 5.1 返回按钮，仅适用于flow图布局，所有的图层需要放在一个根图层下 （Array button_List）
 backButton = (button_List = []) ->
         for bt in button_List
             root = bt.ancestors()[bt.ancestors().length - 1]
@@ -56,12 +64,6 @@ backButton = (button_List = []) ->
                 backPoint = node_list.pop()
                 root.x = 0 - backPoint.x
                 root.y = 0 - backPoint.y
-
-# 2.6 状态循环按钮 # (Array button_List, object tar_layer)
-cycleButton = (button_List = [],tar_layer) ->
-	for bt in button_List
-		bt.onClick ->
-			tar_layer.stateCycle()
 
 # 3 动画效果
 # 3.1 快来点我效果 # (object me)
@@ -136,3 +138,4 @@ touchThis =(arrow,direction)->
 hiddenThem = (layer_list = []) ->
 	for l in layer_list
 		l.visible = false
+
